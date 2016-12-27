@@ -20,8 +20,10 @@ float botao8;
 unsigned int divideTempo = 1;
 
 
-float dmx[NCHANNELS];
-float dmxEasy[NCHANNELS];
+// float dmx[NCHANNELS];
+// float dmxEasy[NCHANNELS];
+double dmx[NCHANNELS];
+double dmxEasy[NCHANNELS];
 
 unsigned int cena;
 float easing = 10.0;
@@ -55,11 +57,11 @@ int maxY = 0;
 #include "Classes.h"
 #include "Definitions.h"
 
+
 // usada somente uma vez no setup
 void fixturesIndex() {
 	int i = 0;
 	for (auto & f : fixtures) {
-		//Serial.println("canal :: " + String(f.channel) + " -- x:" + String(f.x) + " -- y:" + String(f.y));
 		minX = min(minX, f.x);
 		maxX = max(maxX, f.x);
 		minY = min(minY, f.y);
@@ -69,11 +71,6 @@ void fixturesIndex() {
 		i++;
 	}
 
-	// Serial.println("minX :: " + String(minX));
-	// Serial.println("maxX :: " + String(maxX));
-	// Serial.println("minY :: " + String(minY));
-	// Serial.println("maxY :: " + String(maxY));
-
 	for (auto & f : fixtures) {
 		f.xx = map(f.x, minX, maxX, 0, 100)/100.0f;
 		f.yy = map(f.y, minY, maxY, 0, 100)/100.0f;
@@ -82,9 +79,9 @@ void fixturesIndex() {
 
 //
 void debugFixtures() {
+	delay(800);
 	for (auto & f : fixtures) {
 		String line = String(f.channel) + "\t\t" + String(f.xx) + "\t" + String(f.yy);
-		//" + String(f.x) + ":" + String(f.y) + " --- 
 		Serial.println(line);
 	}
 }
@@ -92,11 +89,8 @@ void debugFixtures() {
 
 void setupBardapraia() {
 	Serial.begin(9600);
-	delay(800);
-
 	fixturesIndex();
-
-	debugFixtures();
+//	debugFixtures();
 
 	for (int a = 0; a < NBUTTONS; a++ ) {
 		pinMode(a, INPUT_PULLUP);
@@ -110,7 +104,11 @@ void setupBardapraia() {
 }
 
 
-
+void setDmx(int c, int v) {
+	dmx[c] = v;
+	dmxEasy[c] = v;
+	DmxSimple.write(c, v);
+}
 
 void allWhite() {
 	for (int a=0; a<73; a++) {
@@ -121,17 +119,16 @@ void allWhite() {
 
 void setColor(fixture & f, color c) {
 	if (f.modelo != MOVINGHEAD) {
-		int r = c.r * fade;
-		int g = c.g * fade;
-		int b = c.b * fade;
-		dmx[f.canalRgb+0] = r;
-		dmx[f.canalRgb+1] = g;
-		dmx[f.canalRgb+2] = b;
-		DmxSimple.write(f.canalRgb+0, r);
-		DmxSimple.write(f.canalRgb+1, g);
-		DmxSimple.write(f.canalRgb+2, b);
+		// int r = c.r * fade;
+		// int g = c.g * fade;
+		// int b = c.b * fade;
+		setDmx(f.canalRgb + 0, c.r * fade);
+		setDmx(f.canalRgb + 1, c.g * fade);
+		setDmx(f.canalRgb + 2, c.b * fade);
+		// setDmx(f.canalRgb + 0, r);
+		// setDmx(f.canalRgb + 1, g);
+		// setDmx(f.canalRgb + 2, b);
 	}
-
 }
 
 void setColorEasy(fixture & f, color & c) {
@@ -180,9 +177,7 @@ void resetMoving() {
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
 			for (int c=6; c<=7; c++) {
-				dmx[f.channel + c] = 0;
-				dmxEasy[f.channel + c] = 0;
-				DmxSimple.write(f.channel + c, 0);
+				setDmx(f.channel + c, 0);
 			}
 		}
 	}		
@@ -361,29 +356,27 @@ void readButtons() {
 void sendDmxEasy() {
 
 // so faz o easing com todas.
-	for (int a=0; a<140; a++) {
+	for (int a=0; a<NCHANNELS; a++) {
       if (easing > 0) {
         dmxEasy[a] += (dmx[a] - dmxEasy[a]) / easing;
-        //DmxSimple.write(a + 1, byte(dmxEasy[a]));
       } else {
         dmxEasy[a] = dmx[a];
-        //DmxSimple.write(a + 1, byte(dmx[a]));
       }
 	}
 	// deixo os movings de fora
-    for (int a = 0; a < 73; a++) {
+    for (int a = 1; a < 73; a++) {
 //    for (int a = 0; a < NCHANNELS; a++) {
       if (easing > 0) {
         //dmxEasy[a] += (dmx[a] - dmxEasy[a]) / easing;
-        DmxSimple.write(a, byte(dmxEasy[a]));
+
+        // xaxa - será que o byte ta dando problema na conversao?
+        DmxSimple.write(a, uint8_t(dmxEasy[a]));
       } else {
         //dmxEasy[a] = dmx[a];
-        DmxSimple.write(a, byte(dmx[a]));
+        DmxSimple.write(a, uint8_t(dmx[a]));
       }
     }
 }
-
-
 
 
 void setMovingPan(int val) {
@@ -392,9 +385,7 @@ void setMovingPan(int val) {
 	}
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
-			int canal = f.channel + 0;
-			dmx[canal] = val;
-			DmxSimple.write(canal, val);
+			setDmx(f.channel + 0 , val);
 		}
 	}
 }
@@ -406,9 +397,7 @@ void setMovingTilt(int val) {
 
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
-			int canal = f.channel + 1;
-			dmx[canal] = val;
-			DmxSimple.write(canal, val);
+			setDmx(f.channel + 0 , val);
 		}
 	}
 }
@@ -421,16 +410,11 @@ void setMovingDimmer(int val) {
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
 			// pan, tilt
-			// xxx ? strobo?
+			// dimmer ? strobo?
 			// r g b
 			// 6 ? 
 			// 7 ?
-			int canal = f.channel + 2;
-			dmx[canal] = val;
-			dmxEasy[canal] = val;
-			DmxSimple.write(canal, val);
-
-			//DmxSimple.write(f.channel + 2, 255);
+			setDmx(f.channel + 2 , val);
 		}
 	}
 }
@@ -518,7 +502,7 @@ void strobo() {
 	// 	Serial.println("strobo");
 	// }
 	piscante = !piscante;
-	for (int a=0; a<73; a++) {
+	for (int a=1; a<73; a++) {
 		DmxSimple.write(a, piscante ? 255 : 0 );
 	}
 	// for (auto & f : fixtures) {
@@ -538,7 +522,7 @@ void chuvisco() {
 
 void blackout() {
 	//evita um branco solido la no inicio
-	for (int a = 0; a < NCHANNELS; a++) {
+	for (int a = 1; a < NCHANNELS; a++) {
 		DmxSimple.write(a , 0);
 	}
 }
@@ -546,10 +530,9 @@ void blackout() {
 void movingEasy() {
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
-			int canal = f.channel + 3;
 			for (int a = 0; a <  3; a++) {
-				int c = canal + a;
-				DmxSimple.write(c, dmxEasy[c]);
+				int c = f.canalRgb + a;
+				DmxSimple.write(c, uint8_t(dmxEasy[c]));
 			}
 		}
 	}

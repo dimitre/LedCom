@@ -16,7 +16,6 @@ public:
 	}
 };
 
-
 class fixture {
 	public:
 		unsigned int channel;
