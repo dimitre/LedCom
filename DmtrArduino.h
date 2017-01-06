@@ -7,8 +7,8 @@
 #define NCHANNELS 140
 
 // remover
-#define NPALETAS 8
-#define NCENAS 5
+#define NPALETAS 15
+#define NCENAS 6
 
 // variavel pra guardar o estado do ultimo botao
 bool debug = false;
@@ -22,11 +22,11 @@ unsigned int divideTempo = 1;
 
 // float dmx[NCHANNELS];
 // float dmxEasy[NCHANNELS];
+double easing = 10.0;
 double dmx[NCHANNELS];
 double dmxEasy[NCHANNELS];
 
 unsigned int cena;
-float easing = 10.0;
 unsigned int paleta = 0;
 
 float fade = 1.0;
@@ -45,6 +45,7 @@ int potVal[8];
 float bpm = 120.0;
 float tempo = 60000.0 / bpm;
 unsigned int nextEvent;
+unsigned int nextAutomatic;
 float lastTempo = 0;
 
 
@@ -62,6 +63,7 @@ int maxY = 0;
 void fixturesIndex() {
 	int i = 0;
 	for (auto & f : fixtures) {
+		f.indice = i;
 		minX = min(minX, f.x);
 		maxX = max(maxX, f.x);
 		minY = min(minY, f.y);
@@ -107,7 +109,7 @@ void setupBardapraia() {
 void setDmx(int c, int v) {
 	dmx[c] = v;
 	dmxEasy[c] = v;
-	DmxSimple.write(c, v);
+	DmxSimple.write(c, byte(v));
 }
 
 void allWhite() {
@@ -133,9 +135,9 @@ void setColor(fixture & f, color c) {
 
 void setColorEasy(fixture & f, color & c) {
 	if (f.modelo != MOVINGHEAD) {
-		dmx[f.canalRgb] = c.r * fade;
-		dmx[f.canalRgb] = c.g * fade;
-		dmx[f.canalRgb] = c.b * fade;
+		dmx[f.canalRgb + 0] = c.r * fade;
+		dmx[f.canalRgb + 1] = c.g * fade;
+		dmx[f.canalRgb + 2] = c.b * fade;
 	}
 }
 
@@ -150,21 +152,31 @@ void playColor(fixture & f, int i = -1) {
 
 
 void movingsColor(bool black = false) {
-	int indiceCor = paletas[paleta][0];
+
+	int indiceCor = paletas[paleta][(conta/2)%3];
 	color c = colors[indiceCor];
 	if (black) {
 		c = color(0,0,0);
 	}
 
-	float r = c.r * botao8;
-	float g = c.g * botao8;
-	float b = c.b * botao8;
+	float r = c.r;
+	float g = c.g;
+	float b = c.b;
+
+	float w = 0;
+
+	if (r == g && g == b) {
+		w = r;
+		r = g = b = 0;
+	}
+
 
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
 			dmx[f.canalRgb + 0] = r;
 			dmx[f.canalRgb + 1] = g;
 			dmx[f.canalRgb + 2] = b;
+			dmx[f.canalRgb + 3] = w;
 		}
 	}
 }
@@ -222,7 +234,7 @@ void pisca() {
 					setColorEasy(f, black);
 				}
 			} else {
-				setColorEasy(f,black);
+				setColorEasy(f, black);
 			}
 		}
 	}
@@ -260,7 +272,7 @@ void pisca() {
 		for (auto & f : fixtures) {
 			if (conta % maxX == f.x) {
 //				playColor(f, f.xx * 3);
-				playColor(f, 0);
+				playColor(f, map(f.x, 0, 5, 0, 3));
 			} else {
 				setColorEasy(f, black);
 			}
@@ -271,11 +283,17 @@ void pisca() {
 		for (auto & f : fixtures) {
 			if (conta % maxY == f.y) {
 //				playColor(f, f.yy * 3);
-				playColor(f, 0);
+				playColor(f, map(f.y, 0, 12, 0, 3));
 
 			} else {
 				setColorEasy(f, black);
 			}
+		}
+	}
+
+	else if (cena == 6) {
+		for (auto & f : fixtures) {
+			playColor(f, f.indice % 3);
 		}
 	}
 
@@ -370,10 +388,10 @@ void sendDmxEasy() {
         //dmxEasy[a] += (dmx[a] - dmxEasy[a]) / easing;
 
         // xaxa - será que o byte ta dando problema na conversao?
-        DmxSimple.write(a, uint8_t(dmxEasy[a]));
+        DmxSimple.write(a, byte(dmxEasy[a]));
       } else {
         //dmxEasy[a] = dmx[a];
-        DmxSimple.write(a, uint8_t(dmx[a]));
+        DmxSimple.write(a, byte(dmx[a]));
       }
     }
 }
@@ -391,29 +409,26 @@ void setMovingPan(int val) {
 }
 
 void setMovingTilt(int val) {
-	if (debug) {
+	if (debug) 
+	{
 		Serial.println("setMovingTilt :: " + String(val));
 	}
 
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
-			setDmx(f.channel + 0 , val);
+			setDmx(f.channel + 1 , val);
 		}
 	}
 }
 
 void setMovingDimmer(int val) {
-	if (debug) {
+	if (debug) 
+	{
 		Serial.println("setMovingDimmer :: " + String(val));
 	}
 
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
-			// pan, tilt
-			// dimmer ? strobo?
-			// r g b
-			// 6 ? 
-			// 7 ?
 			setDmx(f.channel + 2 , val);
 		}
 	}
@@ -434,8 +449,12 @@ void readPots() {
 			potVal[a] = analogRead(indexPot);
 
 			if (indexPot == 17) { //primeiro pot
-				cena = map(analogRead(indexPot), 5, 1023, 0, NCENAS);
-				divideTempo = map(analogRead(indexPot), 5, 1023, 0, NCENAS * 4) % 4;
+				cena = map(analogRead(indexPot), 0, 1023, 0, NCENAS + 1);
+				if (cena > NCENAS) {
+					cena = NCENAS;
+				}
+				//cena = constrain(cena, 0, NCENAS);
+				divideTempo = map(analogRead(indexPot), 0, 1023, 0, NCENAS * 4) % 4;
 				if (debug) 
 				{
 					Serial.println("cena :: " + String(cena));
@@ -443,22 +462,27 @@ void readPots() {
 			}
 
 			else if (indexPot == 16) { //segundo pot
-				easing = map(analogRead(indexPot), 5, 1023, 0, 30);
+				easing = map(analogRead(indexPot), 0, 1023, 0, 20);
 				if (debug) {
 					Serial.println(easing);
 				}
 			}
 			else if (indexPot == 15) { //terceiro pot
-				paleta = map(analogRead(indexPot), 5, 1023, 0, NPALETAS);
-				if (debug) {
+				paleta = map(analogRead(indexPot), 0, 1023, 0, NPALETAS + 1);
+				if (paleta > NPALETAS) {
+					paleta = NPALETAS;
+				}
+				//paleta = constrain(paleta, 0, NPALETAS);
+				if (debug) 
+				{
 					Serial.println("paleta :: " + String(paleta));
 				}
 			}
 
 			else if (indexPot == 14) { //quarto pot
-//				bpm = map(analogRead(indexPot), 5, 1023, 60, 180);
-				bpm = map(analogRead(indexPot), 5, 1023, 100, 140);
-//				bpm = map(analogRead(indexPot), 5, 1023, 20, 280);
+//				bpm = map(analogRead(indexPot), 0, 1023, 60, 180);
+				bpm = map(analogRead(indexPot), 0, 1023, 100, 140);
+//				bpm = map(analogRead(indexPot), 0, 1023, 20, 280);
 				tempo = 60000 / bpm;
 				//temporizador.stop(evento);
 				//evento = temporizador.every(tempo, pisca);
@@ -468,28 +492,26 @@ void readPots() {
 			}
 
 			else if (indexPot == 21) { //primeiro pot de baixo - fade
-				fade =	map(analogRead(indexPot), 5, 1023, 0, 100) / 100.0;
+				fade =	map(analogRead(indexPot), 0, 1023, 0, 100) / 100.0;
 				if (debug) {
 					Serial.println("fade :: " + String(fade));
 				}
 			}
 
 			else if (indexPot == 20) { //segundo pot de baixo - pan
-				int val =	map(analogRead(indexPot), 5, 1023, 0, 255);
+				int val =	map(analogRead(indexPot), 0, 1023, 0, 255);
 				setMovingPan(val);
-				//setMovingDimmer(255);
 			}
 			else if (indexPot == 19) { //terceiro pot de baixo - tilt
-				int val =	map(analogRead(indexPot), 5, 1023, 0, 255);
+				int val =	map(analogRead(indexPot), 0, 1023, 0, 255);
 				setMovingTilt(val);
-				//setMovingDimmer(255);
 			}
 			else if (indexPot == 18) { //quarto pot de baixo
 
-				botao8 = map(analogRead(indexPot), 5, 1023, 0, 255);
-				setMovingDimmer(botao8);
+				//botao8 = ;
+				setMovingDimmer(map(analogRead(indexPot), 0, 1023, 0, 255));
 				// talvez fazer cena de moving head
-				// fade =	map(analogRead(indexPot), 5, 1023, 0, 100) / 100.0;
+				// fade =	map(analogRead(indexPot), 0, 1023, 0, 100) / 100.0;
 				// Serial.println(fade);
 			}// continua 20, 19, 18
 		}
@@ -527,14 +549,56 @@ void blackout() {
 	}
 }
 
-void movingEasy() {
+void movingsEasy() {
 	for (auto & f : fixtures) {
 		if (f.modelo == MOVINGHEAD) {
-			for (int a = 0; a <  3; a++) {
+			// mudei pra 4 pra ter o rgbw agora
+			for (int a = 0; a <  4; a++) {
 				int c = f.canalRgb + a;
-				DmxSimple.write(c, uint8_t(dmxEasy[c]));
+				DmxSimple.write(c, byte(dmxEasy[c]));
 			}
 		}
+	}
+}
+
+
+
+
+
+void loopBardapraia() {
+	if (millis() > nextEvent) {
+		pisca();
+		nextEvent = millis() + tempo;
+	}
+
+	if (buttonPressed[1] || buttonPressed[0]) {
+		if (buttonPressed[0] && buttonPressed[1]) {
+			chuvisco();
+		} else {
+
+			if (buttonPressed[0]) {
+				strobo();
+			}
+		}
+	} else {
+		sendDmxEasy();
+		movingsEasy();
+	}
+}
+
+void randomAll() {
+	cena = random(0,4);
+	paleta = random(0, NPALETAS);
+	bpm = random(60, 180);
+	tempo = random(400,800);
+	easing = random(0,20);
+	//setBpm(bpm);
+}
+
+void automatic() {
+	if (millis() > nextAutomatic) {
+		randomAll();
+		nextAutomatic = millis() + 180000;
 	}
 }
 
