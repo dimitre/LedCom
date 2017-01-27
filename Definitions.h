@@ -30,7 +30,7 @@ int paletas[][3] = {
 	{ 2, 3, 3 },  // magenta verde verde
 	{ 0, 1, 1 },  // branco verm verm
 	{ 0, 4, 2 },  // branco azul magenta
-	{ 7, 7, 3 }	  // branco azul magenta
+	{ 7, 7, 3 }	  // roxo roxo verde
 
 		// 12 paletas?
 };
