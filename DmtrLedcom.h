@@ -19,8 +19,7 @@ bool debug = true;
 
 uint16_t prevPot;
 
-Bounce debounceEsq;
-Bounce debounceDir;
+Bounce debounceEsq, debounceDir;
 
 void panic() {
 	Serial.println("PANIC!");
@@ -39,7 +38,9 @@ void unlock() {
 
 void moveAll() {
 	bool sobe = digitalRead(SOBEDESCE_PIN) == LOW;
+	Serial.println("MoveAll");
 	Serial.println(sobe ? "SUBINDO" : "DESCENDO");
+
 	for (auto & f : fixtures) {
 
 		// checa pois tem fixtures que é s´ø o botao
@@ -61,7 +62,6 @@ void moveAll() {
 void paraAll() {
 	Serial.println("Pointer to Function - PARA ALL");
 	for (auto & f : fixtures) {
-		//f.para();
 		f.setDmx(5, 0);
 	}
 }
@@ -80,8 +80,8 @@ void setupLedcom() {
 	DmxSimple.usePin(DMX_PIN);
 	DmxSimple.maxChannel(NCHANNELS);
 
-	debounceEsq.attach(33, 8);
-	debounceDir.attach(22, 8);
+	// debounceEsq.attach(33, 8);
+	// debounceDir.attach(22, 8);
 
 
 	for (auto & f : fixtures) {
@@ -101,7 +101,7 @@ void setupLedcom() {
 }
 
 void readPots() {
-	if (abs(prevPot - analogRead(POT_PIN)) > 3) { //tolerancia 3
+	if (abs(prevPot - analogRead(POT_PIN)) > 4) { //tolerancia 3
 		int vel = map(analogRead(POT_PIN), 0, 1023, 0, 255);
 		if (debug) {
 			Serial.print("velocidade :: ");
@@ -116,15 +116,21 @@ void readPots() {
 
 void updateLedcom() {
 	readPots();
-	if (debounceEsq.fallingEdge()) {
-		moveAll();
-	}
-	if (debounceEsq.risingEdge()) {
-		paraAll();
-	}
-	if (debounceDir.fallingEdge() || debounceDir.risingEdge()) {
-		panic();
-	}
+	// debounceEsq.update();
+	// debounceDir.update();
+	// if (debounceEsq.fallingEdge()) {
+	// 	Serial.println("esq");
+	// 	moveAll();
+	// }
+	// if (debounceEsq.risingEdge()) {
+	// 	Serial.println("esq");
+	// 	paraAll();
+	// }
+	// if (debounceDir.fallingEdge() || debounceDir.risingEdge()) {
+	// 	Serial.println("dir");
+	// 	panic();
+	// }
+
 	for (auto & f : fixtures) {
 		f.readButton();
 	}

@@ -29,13 +29,23 @@ class fixture {
 
 		void para() {
 			// para movimento
-			setDmx(5, 0);
+			if (channel > 0) {
+				Serial.println("Para :: " + String(channel));
+				setDmx(5, 0);
+			} else {
+				if (ready) {
+					(*parar)();
+				}
+			}
 		}
 
 		void move() {
 			if (channel > 0) {
+				Serial.print(sobe ? "SOBE :: " : "DESCE :: ");
+				Serial.println(String(channel) + "\tbutton :: " + String(port) + "\tindex :: " + String(index));
+
 				sobe = digitalRead(SOBEDESCE_PIN) == LOW;
-								Serial.println(sobe ? "SUBINDO" : "DESCENDO");
+				//Serial.println(sobe ? "SUBINDO" : "DESCENDO");
 
 				if (sobe) {
 					setDmx(4, 200);
@@ -48,10 +58,8 @@ class fixture {
 				if (ready) {
 					if (port == 33) {
 						(*mover)();
-						Serial.println("MOVER");
 					}
 					else if (port == 22) {
-						Serial.println("PANIC");
 						(*panic)();
 					}
 				}
@@ -65,13 +73,9 @@ class fixture {
 			debounce.update();
 			if (debounce.fallingEdge()) {
 				move();
-				Serial.print(sobe ? "SOBE :: " : "DESCE :: ");
-				Serial.println(String(channel) + "\tbutton :: " + String(port) + "\tindex :: " + String(index));
 			}
 			if (debounce.risingEdge()) {
 				para();
-				Serial.println("Para :: " + String(channel));
-
 			}
 
 		}
