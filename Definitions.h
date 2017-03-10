@@ -1,9 +1,9 @@
 // todos 33
 
-button buttons[] = {
-	// button (33),
-	// button (22)
-};
+// button buttons[] = {
+// 	// button (33),
+// 	// button (22)
+// };
 
 
 
@@ -29,21 +29,4 @@ fixture fixtures[] = {
 
 	fixture(121, 19, 13),
 	fixture(131, 20, 14),
-
-
-
-
-	// botao da esquerda 33, botao da direita 22
-	// sobedesce 31
-	// fixture(141, 0, 8),
-
-	// fixture(161, 1),
-	// fixture(181),
-	// fixture(201),
-	// fixture(221),
-
-	// fixture(241),
-	// fixture(261),
 };
-
-//do a 15 ao a 21

@@ -60,15 +60,6 @@ class fixture {
 			}
 		}
 
-		// void aciona() {
-		// 	if (digitalRead(port) == LOW) {
-		// 		move();
-		// 	}
-
-		// 	else {
-		// 		para();
-		// 	}
-		// }
 
 		void readButton() {
 			debounce.update();
@@ -83,23 +74,17 @@ class fixture {
 
 			}
 
-			// if (buttonState != digitalRead(button)) {
-			// 	aciona();
-			// 	buttonState = digitalRead(button);
-			// }
 		}
 };
 
 
 
 
-
+// Rever este
+/*
 class button {
 public:
 	uint16_t port;
-	//int tipo;
-	//bool buttonState;
-	//bool sobe = false;
 	Bounce debounce;
 
 	void (*mover)() = NULL;
@@ -112,38 +97,14 @@ public:
 	}
 
 	void readButton() {
-		//Serial.println("readbutton botao");
-		//sobe = digitalRead(SOBEDESCE_PIN) == LOW;
-		//Serial.println(digitalRead(port));
 		debounce.update();
 		if (debounce.fallingEdge()) {
 			Serial.println("aperta");
-			// if ((*mover) != NULL) {
-			// 	(*mover)();
-			// }
 		}
 		if (debounce.risingEdge()) {
 			Serial.println("solta");
-			// if ((*parar) != NULL) {
-			// 	(*parar)();
-			// }
 		}
-
-		// if (buttonState != digitalRead(port)) {
-		// 	if (digitalRead(port) == LOW) {
-		// 		if (sobe) {
-		// 			if ((*subir) != NULL) {
-		// 				(*subir)();
-		// 			}
-		// 		} else {
-		// 			(*descer)();
-		// 		}
-		// 	} else {
-		// 		(*parar)();
-		// 	}
-		// 	//Serial.println(tipo);
-		// 	buttonState = digitalRead(port);
-		// }
 	}
 };
 
+*/
