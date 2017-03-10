@@ -38,8 +38,7 @@ void unlock() {
 
 void moveAll() {
 	bool sobe = digitalRead(SOBEDESCE_PIN) == LOW;
-	Serial.println("MoveAll");
-	Serial.println(sobe ? "SUBINDO" : "DESCENDO");
+	Serial.println("MoveAll :: " + sobe ? "SUBINDO" : "DESCENDO");
 
 	for (auto & f : fixtures) {
 
@@ -60,7 +59,7 @@ void moveAll() {
 }
 
 void paraAll() {
-	Serial.println("Pointer to Function - PARA ALL");
+	Serial.println("PARA ALL");
 	for (auto & f : fixtures) {
 		f.setDmx(5, 0);
 	}

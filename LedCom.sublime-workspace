@@ -1,0 +1,596 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"g",
+				"g"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "DmtrLedcom.h",
+			"settings":
+			{
+				"buffer_size": 2439,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Classes.h",
+			"settings":
+			{
+				"buffer_size": 1936,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Definitions.h",
+			"settings":
+			{
+				"buffer_size": 459,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/arduino-cli/arduino-cli.sublime-build",
+					""
+				],
+				[
+					"Packages/arduino-cli/arduino-cli.sublime-build",
+					"just build"
+				],
+				[
+					"Packages/arduino-cli/arduino-cli.sublime-build",
+					"build and upload"
+				]
+			],
+			[
+				"Packages/arduino-cli/arduino-cli.sublime-build",
+				"build and upload"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"add reposi",
+				"Package Control: Add Repository"
+			],
+			[
+				"pack",
+				"Package Control: Add Repository"
+			],
+			[
+				"add repos",
+				"Package Control: Add Repository"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Install Package Control"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 553.0,
+		"history":
+		[
+			"Arduino-CLI",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/dd/src/plotdevice/tests/_in/compliance/plotdevice.py",
+		"/Users/dd/src/plotdevice/plotdevice/util/ottobot.py",
+		"/Users/dd/src/plotdevice/tests/_in/compliance/nodebox.py",
+		"/Users/dd/src/plotdevice/tests/drawing.py",
+		"/Users/dd/src/plotdevice/plotdevice/context.py",
+		"/Users/dd/src/plotdevice/plotdevice/gfx/colors.py",
+		"/Users/dd/src/plotdevice/app/Resources/ui/js/ace.js",
+		"/Users/dd/src/plotdevice/plotdevice/gui/widgets.py",
+		"/Users/dd/Desktop/a.xml",
+		"/Users/dd/Desktop/OiBrand4/resources/3.xml",
+		"/Users/dd/Desktop/OiBrand4/resources/1.xml",
+		"/Users/dd/Desktop/OiBrand4/resources/2.xml",
+		"/Users/dd/Desktop/OiBrand4/assets/zzz.xml",
+		"/Users/dd/Documents/Arduino/libraries/DmtrControllerApa/DmtrControllerApa.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrController/DmtrController.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrController/Classes.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrController/Definitions.h",
+		"/Users/dd/Documents/Arduino/libraries/Ethernet/EthernetUdp.h",
+		"/Users/dd/Documents/Arduino/libraries/Ethernet/EthernetUdp.cpp",
+		"/Volumes/ofw/of_v0.9.8_osx_release/apps/myApps/FFTTests/src/ofApp.cpp",
+		"/Users/dd/Desktop/lemp/lemp2.sh",
+		"/Users/dd/Desktop/lemp/lemp.sh",
+		"/Users/dd/Desktop/vps_init.sh",
+		"/Volumes/ofw/of_v0.9.8_osx_release/apps/myApps/_OK_TESTE/AV2016/src/ofApp.cpp",
+		"/Users/dd/Desktop/Hifolio Server/nginx0/vhost/sub.conf",
+		"/Users/dd/Sites/local/t2.html",
+		"/Users/dd/Sites/local/teste.html",
+		"/Users/dd/Desktop/WORK_DMTR/FirefoxAddons/webextensions-examples/tabs-tabs-tabs/manifest.json",
+		"/Users/dd/Desktop/WORK_DMTR/FirefoxAddons/webextensions-examples/tabs-tabs-tabs/tabs.js",
+		"/Users/dd/Desktop/WORK_DMTR/FirefoxAddons/webextensions-examples/tabs-tabs-tabs/README.md",
+		"/Users/dd/Desktop/WORK_DMTR/FirefoxAddons/webextensions-examples/tabs-tabs-tabs/tabs.css",
+		"/Users/dd/Desktop/WORK_DMTR/FirefoxAddons/webextensions-examples/tabs-tabs-tabs/tabs.html",
+		"/Volumes/ofw/of_v0.9.8_osx_release/apps/myApps/ElectricVideo/src/ofApp.cpp",
+		"/Volumes/ofw/of_v0.9.8_osx_release/scripts/templates/osx/bin/data/_presets/master.xml",
+		"/Users/dd/Desktop/nginx/nginx.conf",
+		"/Users/dd/Library/Application Support/Sublime Text 3/Packages/User/arduino-cli.sublime-settings",
+		"/Volumes/ofw/of_v0.9.8_osx_release/apps/myApps/GameChangers/src/ofApp.cpp",
+		"/Volumes/ofw/TEENSYATUAL/_ETHERNET W5100/w5100b/w5100b.ino",
+		"/Volumes/ofw/of_v0.9.8_osx_release/apps/myApps/SESCInterlagos/bin/data/img.jpg",
+		"/Users/dd/Documents/Arduino/libraries/DmtrApa/DmtrApa.h",
+		"/Users/dd/Desktop/aaa.xml",
+		"/Users/dd/Desktop/asdf.xml",
+		"/Users/dd/Desktop/bbb.xml",
+		"/Users/dd/Desktop/qwer.xml",
+		"/Users/dd/Desktop/x.xml",
+		"/Users/dd/Desktop/y.xml",
+		"/Users/dd/Desktop/c.xml",
+		"/Users/dd/Desktop/z.xml",
+		"/Users/dd/Desktop/aa.xml",
+		"/Users/dd/Documents/Arduino/libraries/DmtrLedcom/Classes.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrApa/Definitions.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrApa/Classes.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrLedcom/DmtrLedcom.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrLedcom/Definitions.h",
+		"/Volumes/ofw/of_v0.9.8_osx_release/apps/myApps/Cymatics/bin/up.command",
+		"/Users/dd/Documents/Arduino/libraries/DmtrArduino/Definitions.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrArduino/Classes.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrArduino/DmtrArduino.h",
+		"/Volumes/ofw/of_v0.9.8_osx_release/apps/myApps/Mareh2018/bin/pixelpusher_configtool/04/pixel.rc",
+		"/Users/dd/Documents/Arduino/libraries/DmtrAudio/Classes.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrAudio/DmtrAudio.h",
+		"/Users/dd/Desktop/nginx/miolo.conf",
+		"/Users/dd/Documents/Arduino/libraries/DmtrYouse/Definitions.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrYouse/Classes.h",
+		"/Users/dd/Documents/Arduino/libraries/DmtrYouse/DmtrYouse.h",
+		"/Users/dd/Library/Caches/Cleanup At Startup/Transmit/3A252C24-6FA3-4BC0-927D-00C031DEB7B6/error_log",
+		"/Users/dd/Documents/Arduino/libraries/DmtrAudio/Definitions.h",
+		"/Users/dd/Documents/Arduino/libraries/Audio/mixer.h",
+		"/Users/dd/Desktop/WORK_DMTR/syntype_python/g12.py",
+		"/Users/dd/Documents/Arduino/libraries/Audio/mixer.cpp",
+		"/Users/dd/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/dd/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/dd/Desktop/WORK_DMTR/syntype_python/_fonts/spirulina.txt",
+		"/Users/dd/Desktop/WORK_DMTR/syntype_python/spirotest.py",
+		"/Users/dd/Desktop/WORK_DMTR/syntype_python/_fea/spirulina.fea",
+		"/Volumes/ofw/TEENSYATUAL/_TeensyAudio/RecorderDmtrSerialFlash12/functions.h",
+		"/Users/dd/Documents/Arduino/libraries/Audio/play_sd_raw_dmtr.cpp",
+		"/Users/dd/Documents/Arduino/libraries/Audio/play_sd_raw_dmtr.h",
+		"/Users/dd/Documents/Arduino/libraries/Audio/Audio.h",
+		"/Users/dd/Documents/Arduino/libraries/Audio/play_sd_raw.h",
+		"/Users/dd/Documents/Arduino/libraries/Audio/play_sd_raw.cpp",
+		"/Users/dd/Documents/Arduino/libraries/Audio/effect_flange.cpp",
+		"/Users/dd/Documents/Arduino/libraries/Audio/effect_flange.h",
+		"/Volumes/ofw/of_v0.9.8_osx_release/addons/ofxDmtrUI3/src/ofxDmtrUI3.h",
+		"/Volumes/ofw/of_v0.9.8_osx_release/addons/ofxDmtrUI3/src/ofxDmtrUI3.cpp",
+		"/Volumes/ofw/TEENSYATUAL/_DMX/DMX_8_BarDaPraia/DMX_8_BarDaPraia.ino",
+		"/Users/dd/Documents/Arduino/libraries/DmxSimple/DmxSimple.h",
+		"/Volumes/ofw/WORK/TEENSYATUAL/_DMX/DMX_5_knobs3/Dmtr.h",
+		"/Volumes/ofw/cinder_0.9.0_mac/samples/VoronoiGpu/src/VoronoiGpuApp.cpp",
+		"/Volumes/ofw/cinder_0.9.0_mac/samples/_audio/VoiceBasic/src/VoiceBasicApp.cpp",
+		"/Volumes/ofw/cinder_0.9.0_mac/samples/_timeline/VisualDictionary/src/VisualDictionaryApp.cpp",
+		"/Volumes/ofw/cinder_0.9.0_mac/samples/Wisteria/src/WisteriaApp.cpp",
+		"/Volumes/ofw/OiApp/src/libs/oi.h",
+		"/Users/dd/Desktop/OiBrand4/src/OneEuroFilter.h",
+		"/Volumes/ofw/backup_of_server.command",
+		"/Users/dd/src/of_v0.9.6_osx_release/apps/myApps/Mareh2018/bin/up.command",
+		"/Users/dd/Documents/Arduino/libraries/PacketSerial/src/PacketSerial.h",
+		"/Users/dd/Desktop/OiBrand4/upnbs.command",
+		"/Users/dd/up.sh",
+		"/Users/dd/Documents/Arduino/libraries/Adafruit_DotStar/Adafruit_DotStar.h",
+		"/Users/dd/Desktop/TEENSYATUAL/ESPAPA8/ESPAPA8.ino",
+		"/Volumes/Andy/WARE/_ADOBE/_Adobe CS6 Master Collection (Mac)/adobe_crack.py",
+		"/Users/dd/Documents/Arduino/FastLED/fastpin.h",
+		"/Users/dd/src/backup_of_server.command",
+		"/Users/dd/src/of_v0.9.4_osx_release/apps/myApps/Illusion2018/buildAndRun.sublime-workspace",
+		"/Users/dd/Desktop/IRPF_DECREC/98841785004-IRPF-A-2015-2014-RETIF.REC",
+		"/Users/dd/Desktop/IRPF_DECREC/98841785004-IRPF-A-2015-2014-RETIF.DEC",
+		"/Users/dd/Documents/IRPF/98841785004-IRPF-A-2012-2011-ORIGI.DBK",
+		"/Users/dd/Documents/IRPF/Programas/IRPF2008/gravadas0/98841785004-IRPF-2008-2007-ORIGI.REC",
+		"/Users/dd/Documents/IRPF/Programas/IRPF2014/aplicacao/dados/98841785004/98841785004.xml",
+		"/Users/dd/Documents/IRPF/98841785004-IRPF-A-2013-2012-ORIGI.DBK",
+		"/Users/dd/Documents/IRPF/Programas/IRPF2014/transmitidas/98841785004-IRPF-A-2014-2013-ORIGI.DEC",
+		"/Users/dd/src/of_v0.9.4_osx_release/addons/ofxSerial/example_packet_serial/src/ofApp.h",
+		"/Users/dd/src/of_v0.9.4_osx_release/addons/ofxSerial/example_packet_serial/src/main.cpp",
+		"/Users/dd/src/of_v0.9.4_osx_release/addons/ofxSerial/example_packet_serial/src/ofApp.cpp",
+		"/Users/dd/src/of_v0.9.4_osx_release/addons/ofxDmtrUIMidiController/addon_config.mk",
+		"/Users/dd/Desktop/BTApa/BTApa.ino",
+		"/Users/dd/src/of_v0.9.4_RC1_osx_release/apps/myApps/LedMotor/src/ofApp.h",
+		"/Users/dd/Library/Application Support/Sublime Text 3/Packages/User/OFW.sublime-build",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/contour2.vert",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/pv.txt",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/repeat.txt",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/senoideradial.txt",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/senoideradial2.txt",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/shaderBlurX.txt",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/plexi3.txt",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/lsd.txt",
+		"/Users/dd/src/of_v0.9.3_osx_release/apps/myApps/_shaders2d/proxy.txt"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"colormode",
+			"udpbroadcast",
+			"u3",
+			"udpConfig",
+			"config",
+			"udpConfig",
+			"udpconfig",
+			"udps2",
+			"udps",
+			"udps2",
+			"udps[",
+			"udps.",
+			"udps",
+			"parsepa",
+			"npackets",
+			"udps",
+			"NUMBEROFPACKETS",
+			"npackets",
+			"Npack",
+			"NPACKETS",
+			"udpConfig",
+			"Multicast",
+			"NPACKETS",
+			"udps",
+			"dps",
+			"Serial.print",
+			"9999",
+			"multicast",
+			"post.",
+			"tungs",
+			"dmxsimple",
+			"dmx",
+			"rectime",
+			"MIDI.begin",
+			"rectime",
+			"velo",
+			"LINHA",
+			"index",
+			"led",
+			"indice",
+			"name",
+			"removeFiles",
+			"remove",
+			"eraseFile",
+			"remove",
+			".remove",
+			"remove",
+			"mono",
+			"variacao",
+			"aring",
+			"120",
+			"12-0",
+			"a:",
+			"j:",
+			"remap",
+			"stroke",
+			"pnum",
+			"i:",
+			"prop",
+			"cedilla",
+			"Cedilla:",
+			"cacute",
+			"uni01CD",
+			"uni",
+			"build",
+			"aresta2",
+			"remap",
+			"build",
+			"remap",
+			"layer2",
+			"os.",
+			"sys.e",
+			"'a'",
+			"larguraTotal",
+			"'A'",
+			".py",
+			"aresta",
+			".py",
+			"letra.spacing",
+			"print",
+			"letrasmap",
+			"alturafonte",
+			"porcento",
+			"Letra(",
+			"aresta2",
+			"print ",
+			"key, ",
+			"=-=-=-",
+			"coords",
+			"Letra(",
+			"spiro",
+			"aresta",
+			"fatorlargura",
+			"upperlo",
+			"sub",
+			"feature",
+			"ispl",
+			"audioRec",
+			"rawfile",
+			"2.h",
+			"available",
+			"_File",
+			"seek",
+			"seekcur",
+			"seekCur",
+			"seekset",
+			"peek",
+			"seek",
+			"file_offset",
+			"file_size",
+			"map",
+			"get",
+			"peek",
+			"file_offset",
+			"begin",
+			"file_size",
+			"automatic",
+			"constrain",
+			"NCENAS",
+			"cena ::",
+			"setColorEasy",
+			"black",
+			"setcoloreasy",
+			"movingdimmer",
+			"movingscolor",
+			"easing",
+			"movingsColor",
+			"setDmx"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"0, 1023",
+			"\t",
+			"UdpConfig.",
+			"BTSerial",
+			"u->"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "DmtrLedcom.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Classes.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1936,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Definitions.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 459,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								211,
+								211
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 201.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/arduino-cli/arduino-cli.sublime-build",
+	"project": "LedCom.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 312.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
