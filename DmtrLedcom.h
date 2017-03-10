@@ -64,11 +64,24 @@ void unlock() {
 
 //void sobeAll() {
 void moveAll() {
+	bool sobe = digitalRead(SOBEDESCE_PIN) == LOW;
+	Serial.println(sobe ? "SUBINDO" : "DESCENDO");
 	for (auto & f : fixtures) {
-		if (f.channel > 0) {
-			f.move();
+		if (sobe) {
+			f.setDmx(4, 200);
+		} else {
+			f.setDmx(4, 0);
 		}
-	}
+		// aciona movimento.
+		f.setDmx(5, 200);
+
+	}		
+		// void setDmx(int c, int v) {
+		// 	DmxSimple.write(c + channel, byte(v));
+		// }
+		// if (f.channel > 0) {
+		// 	f.move();
+		// }
 }
 
 // void desceAll() {
@@ -81,17 +94,14 @@ void moveAll() {
 void paraAll() {
 	Serial.println("Pointer to Function - PARA ALL");
 	for (auto & f : fixtures) {
-		f.para();
+		//f.para();
+		f.setDmx(5, 0);
 	}
 }
-
 
 void setupLedcom() {
 	Serial.begin(115200);
 	delay(800);
-
-
-
 	
 	pinMode(SOBEDESCE_PIN, INPUT_PULLUP);
 
